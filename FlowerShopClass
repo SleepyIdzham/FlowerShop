@@ -1,0 +1,62 @@
+/**
+ * Description: To make a Demo For Flower
+ *
+ * Name:Idzham
+ * Date:20/2/2024
+ */
+import java.util.Scanner;
+
+public class FlowerShop {
+    public static void main(String[] args) {
+        Flower[] flowerArr = new Flower[10];
+        Scanner scanner = new Scanner(System.in);
+        int count = 0;
+
+        while (true) {
+            System.out.println("Enter 1 to add a flower, 2 to display all flowers, 3 to calculate and display the total value of the flower inventory, 4 to search for a flower by name, or 0 to exit.");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the name of the flower:");
+                    String name = scanner.next();
+                    System.out.println("Enter the color of the flower:");
+                    String color = scanner.next();
+                    System.out.println("Enter the price of the flower:");
+                    double price = scanner.nextDouble();
+                    System.out.println("Enter the quantity of the flower:");
+                    int quantity = scanner.nextInt();
+
+                    Flower flower = new Flower(name, color, price, quantity);
+                    flowerArr[count] = flower;
+                    count++;
+                    break;
+                case 2:
+                    for (int i = 0; i < count; i++) {
+                        System.out.println(flowerArr[i].toString());
+                    }
+                    break;
+                case 3:
+                    double totalValue = 0;
+
+                    for (int i = 0; i < count; i++) {
+                        totalValue += flowerArr[i].calcValue();
+                    }
+
+                    System.out.println("Total value of the flower inventory: " + totalValue);
+                    break;
+                case 4:
+                    System.out.println("Enter the name of the flower to search:");
+                    String searchName = scanner.next();
+
+                    for (int i = 0; i < count; i++) {
+                        if (flowerArr[i].getName().equalsIgnoreCase(searchName)) {
+                            System.out.println(flowerArr[i].toString());
+                            break;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
